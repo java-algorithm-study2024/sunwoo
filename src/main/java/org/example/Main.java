@@ -1,18 +1,20 @@
 package org.example;
 
 
+
+import org.example.codingtest.Solution;
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
+
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        long X = sc.nextInt();
-        long Y = sc.nextInt();
-        int z = (int) (Y*100 / X);
-        int ans = -1;
-        if ( z < 99){
-            ans = (int) Math.ceil((100*Y - X * (z + 1)) / (double) (z - 99));
-        }
-        System.out.println(ans);
+        int [] a= new int[10];
+        int first = 0;
+        int last = 10;
+
     }
+
 }

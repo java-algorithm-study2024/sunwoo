@@ -1,18 +1,20 @@
 package org.example.codingtest;
 
+import java.util.*;
+
 public class Solution {
-    public int[] solution(int[] num_list) {
-        int[] answer = {};
-        int len = num_list.length;
-        answer = new int[len+1];
-        int ans = 0;
-        if (num_list[len-1] > num_list[len-2]){
-            ans = num_list[len-1] - num_list[len-2];
-        }else{
-            ans = num_list[len-1] * 2;
+    Stack<Integer> after_bridge = new Stack<>();
+    Deque<HashMap<Integer,Integer>> on_bridge = new ArrayDeque<>();
+    public int solution(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        int [] bridge = new int[bridge_length];
+        int a = truck_weights.length;
+        int i =0;
+        while(after_bridge.size() !=a ){
+            HashMap<Integer,Integer> truck = new HashMap<>(truck_weights[i],answer+bridge_length);
+            if(truck);
+
         }
-        answer = num_list;
-        answer[len] = ans;
         return answer;
     }
 }

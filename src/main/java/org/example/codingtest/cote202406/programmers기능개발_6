@@ -1,5 +1,3 @@
-package org.example.codingtest;
-
 import java.util.*;
 
 class Solution {
@@ -8,17 +6,19 @@ class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         ArrayList<Integer> ans = new ArrayList<>();
         Days(progresses,speeds);
-        System.out.println(deq);
         while(!deq.isEmpty()){
             int count = 1;
             int top = deq.pop();
+            System.out.println(top);
             for(int i : deq){
+
                 if (i<=top){
                     deq.pop();
                     count += 1;
+                }else{
+                    break;
                 }
             }
-            System.out.println(count);
             ans.add(count);
         }
         Integer[] tempArray = ans.toArray(new Integer[0]);

@@ -10,9 +10,20 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String ans = "abcdefghijkln";
-        String t = ans.substring(0,4);
-        System.out.println(t);
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        LinkedList<Integer> arr = new LinkedList<>();
+        for(int i=0;i<a;i++){
+            arr.add(i+1);
+        }
+        int count = 0;
+        while(arr.size() != 0){
+            if(count % b == 0) {
+                arr.remove(count);
+
+            }
+        }
 
     }
 }

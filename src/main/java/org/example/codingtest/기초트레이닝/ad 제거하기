@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+
+class Solution {
+    public String[] solution(String[] strArr) {
+        ArrayList<String> ab = new ArrayList<>();
+        for(String a : strArr){
+            if (a.contains("ad")) continue;
+            ab.add(a);
+        }
+        String[] answer = new String[ab.size()];
+        int size = 0;
+        for(String temp : ab){
+            answer[size++] = temp;
+        }
+        return answer;
+    }
+}

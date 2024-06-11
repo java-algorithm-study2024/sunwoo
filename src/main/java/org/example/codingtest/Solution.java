@@ -1,13 +1,17 @@
 package org.example.codingtest;
 
-import java.util.Scanner;
-
 class Solution {
-    public int solution(int num, int n) {
+    public int solution(String ineq, String eq, int n, int m) {
         int answer = 0;
-        if (num % n == 0 ){
-            return 1;
+        boolean ans = false;
+        if(ineq == "<") {
+            if(eq == "=") ans = n<=m;
+            else ans = n<m;
+        }else{
+            if(eq == "=") ans = n>=m;
+            else ans = n>m;
         }
+        if (ans) return 1;
         return 0;
     }
 }

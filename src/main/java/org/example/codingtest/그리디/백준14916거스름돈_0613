@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
+        int a = Integer.parseInt(s);
+        int count = a / 5;
+        int coin = 0;
+        boolean abc = true;
+        while(count >= 0){
+            int check = count * 5;
+            if((a - check)%2 == 0){
+                coin = count + (a-check)/2;
+                abc=false;
+                break;
+            }
+            count -= 1;
+        }
+        if(abc){
+            System.out.println("-1");
+        }else{
+
+            System.out.println(coin);
+        }
+    }
+
+}

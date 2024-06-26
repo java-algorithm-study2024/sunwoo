@@ -1,66 +1,41 @@
 package org.example;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+
+import java.util.*;
 
 public class Main {
-    static int a,b,c;
-
-    static int[][] cabbage;
-    static boolean[][]visit;
-    static int[] dx = {0 , -1 , 0, 1};
-    static int[] dy = {1 , 0 , -1 , 0};
-    static void dfs(int x, int y){
-        visit[x][y] = true;
-        for(int i =0;i<4;i++){
-            int cx = x + dx[i];
-            int cy = y + dy[i];
-            if (cx>=0 && cy >= 0 && cx < a && cy < b){
-                if(!visit[cx][cy] &&cabbage[cx][cy] == 1){
-                    dfs(cx,cy);
-                }
+    public static void dfs(Map<String, List<String>> graph, String node, Set<String> visited, List<String> result) {
+        if (visited.contains(node)) {
+            return;
+        }
+        visited.add(node);
+        result.add(node);
+        List<String> neighbors = graph.get(node);
+        if (neighbors != null) {
+            for (String neighbor : neighbors) {
+                dfs(graph, neighbor, visited, result);
             }
         }
     }
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
 
-        // 첫 번째 숫자는 테스트 케이스의 수
-        int testCaseCount = Integer.parseInt(scanner.nextLine());
-        int count;
-        // 각 테스트 케이스를 처리
-        for (int i = 0; i < testCaseCount; i++) {
-            count = 0;
-            // 각 테스트 케이스의 첫 번째 줄에서 a, b, c를 읽음
-            String[] abc = scanner.nextLine().split(" ");
-            a = Integer.parseInt(abc[0]);
-            b = Integer.parseInt(abc[1]);
-            c = Integer.parseInt(abc[2]);
-            cabbage = new int[a][b];
-            visit = new boolean[a][b];
-
-            // c개의 좌표를 저장할 리스트
-            // 각 좌표를 읽어 리스트에 추가
-            for (int j = 0; j < c; j++) {
-                String[] coord = scanner.nextLine().split(" ");
-                int x = Integer.parseInt(coord[0]);
-                int y = Integer.parseInt(coord[1]);
-                cabbage[x][y]= 1;
-            }
-            for(int x = 0; x < a ; x ++){
-                for(int y = 0; y < b; y ++){
-                    if(cabbage[x][y] == 1 && !visit[x][y]){
-                        dfs(x,y);
-                        count ++;
-                    }
-                }
-            }
-            System.out.println(count);
-
-        }
-        scanner.close();
+    public static List<String> dfs(Map<String, List<String>> graph, String start) {
+        List<String> result = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
+        dfs(graph, start, visited, result);
+        return result;
     }
 
+    public static void main(String[] args) {
+        Map<String, List<String>> graph = new HashMap<>();
+        graph.put("A", Arrays.asList("B", "C"));
+        graph.put("B", Arrays.asList("D", "E"));
+        graph.put("C", Arrays.asList("F"));
+        graph.put("D", Collections.emptyList());
+        graph.put("F", Collections.emptyList());
+
+        List<String> dfsResult = dfs(graph, "A");
+        System.out.println("DFS 탐색 순서: " + dfsResult);
+    }
 }

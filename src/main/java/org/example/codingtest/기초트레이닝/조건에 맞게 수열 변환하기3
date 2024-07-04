@@ -1,0 +1,10 @@
+class Solution {
+    public int[] solution(int[] arr, int k) {
+            int[] answer = {};
+            if(k%2 == 1){
+                return Arrays.stream(arr).map(n->n*k).toArray();
+            }else{
+                return Arrays.stream(arr).map(n->n+k).toArray();
+            }
+        }
+}

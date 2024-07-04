@@ -1,44 +1,37 @@
 package org.example;
 
 import java.io.*;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
-<<<<<<< HEAD
-    static class Solution{
 
-    }
     public static void main(String[] args) throws IOException {
-
-
-=======
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int T = Integer.parseInt(br.readLine());
-        int[] num;
-        StringTokenizer st;
-        for(int i =0; i<T;i++){
-            int N = Integer.parseInt(br.readLine());
-            long answer = 0;
-            st = new StringTokenizer(br.readLine(), " ");
-            num = new int[N];
->>>>>>> 6d0e439d62a05c98679294f31741cb995ef43470
-
-            for (int j = 0; j < N; j++) num[j] = Integer.parseInt(st.nextToken());
-
-            int max = num[N - 1];
-            for (int j = N - 2; j >= 0; j--) {
-                if(num[j] <= max) answer += max - num[j];
-                else max = num[j];
-            }
-            bw.write(answer + "\n");
-
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[] info = new int[n];
+        for (int i = 0; i < n; i++) {
+            info[i] = sc.nextInt();
         }
-        bw.flush();
-        bw.close();
-        br.close();
+        int low = 0,max = 0;
+        for (int i = 0; i < info.length; i++) {
+            if (info[i] > max) {
+                max= info[i];
+            }
+        }
+        int answer = -1;
+        while(low < max){
+            int mid = (low + max)/2;
+            int tree = Arrays.stream(info)
+                    .map(x -> x-mid).filter(x -> x>= 0).sum();
+           if ( tree >= m){
+                low = mid + 1;
+            }else{
+                max = mid;
+            }
+        }
+        System.out.println(answer-1);
     }
 
 }

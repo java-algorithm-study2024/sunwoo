@@ -32,12 +32,7 @@ public class Main {
 			long sum = 0;
 			for(int treeHeight : tree) {
 
-				/*
-				 *  tree의 잘린 길이 = tree의 높이 - 자르는 위치(mid)
-				 *  tree의 잘린 길의의 합을 구한다.
-				 *  이 때 자르는 위치가 주어진 나무의 높이보다 클 수 있기 때문에
-				 *  0 이하인 경우(=음수)에는 합산을 하지 않고 양수만 합산하도록 해야한다.
-				 */
+
 				if(treeHeight - mid > 0) {
 					sum += (treeHeight - mid);
 				}

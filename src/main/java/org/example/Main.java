@@ -2,47 +2,38 @@ package org.example;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int arr[] = new int[N];
-        for (int i = 0; i < N; i++)
-            arr[i] = Integer.parseInt(st.nextToken());
-        Arrays.sort(arr);
-        int min = Integer.MAX_VALUE;
+        String [] temp = br.readLine().split(" ");
+        int N = Integer.parseInt(temp[0]);
+        int D = Integer.parseInt(temp[1]);
+        int K = Integer.parseInt(temp[2]);
+        int C = Integer.parseInt(temp[3]);
+        int[] sushi = new int[N];
+        int[] list = new int[N + K - 1];
         for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < N; j++) {
-                int snowMan1 = arr[i] + arr[j];
-                int start = 0;
-                int end = N - 1;
-                while (start < end) {
-                    if (start == i || start == j) {
-                        start++;
-                        continue;
-                    }
-                    if (end == i || end == j) {
-                        end--;
-                        continue;
-                    }
-                    int snowMan2 = arr[start] + arr[end];
-                    min = Math.min(min, Math.abs(snowMan1 - snowMan2));
-                    if (snowMan1 > snowMan2)
-                        start++;
-                    else if (snowMan1 < snowMan2)
-                        end--;
-                    else {
-                        System.out.println(0);
-                        return;
-                    }
-                }
-            }
+            sushi[i] = Integer.parseInt(br.readLine());
         }
-        System.out.println(min);
+        for (int i = 0; i < K - 1; i++) {
+            list[N++] = list[i];
+        }
+        int[] eaten = new int[D + 1];
+        eaten[C] +=1;
+        int max =1;
+        int start = 0;
+        for (int i = start; i < K; i++) {
+            if(eaten[list[i]] == 0){
+                max ++;
+            }
+            eaten[list[i]] +=1;
+        }
+        start = 0;
+        int end = K;
+        int result= max;
+        for(int i = end;)
     }
 }
